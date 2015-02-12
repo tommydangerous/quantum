@@ -17,6 +17,7 @@ gem "unicorn"
 
 group :development do
   gem "capistrano"
+  gem "capistrano-ext"
   gem "capistrano-rails"
   gem "rvm-capistrano"
 end
