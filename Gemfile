@@ -16,8 +16,6 @@ gem "uglifier", ">= 1.3.0"
 gem "unicorn"
 
 group :development do
-  gem "capistrano"
-  gem "capistrano-ext"
+  gem "capistrano", "~> 3.3.0"
   gem "capistrano-rails"
-  gem "rvm-capistrano"
 end
