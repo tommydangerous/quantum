@@ -8,8 +8,8 @@ preload_app true # Load the app into master before forking workers
 timeout 30 # Restart any workers that haven't responded in 30 seconds
 
 # Listen on a Unix data socket
-listen "#{shared_dir}/sockets/unicorn.sock", backlog: 64
-# listen "127.0.0.1:3000"
+# listen "#{shared_dir}/sockets/unicorn.sock", backlog: 64
+listen "127.0.0.1:3000"
 
 stderr_path "#{shared_dir}/log/unicorn.log"
 stdout_path "#{shared_dir}/log/unicorn.log"
