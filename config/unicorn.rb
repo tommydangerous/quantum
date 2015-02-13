@@ -1,5 +1,5 @@
-app_dir    = "/var/www/quantum"
-shared_dir = "#{app_dir}/shared"
+app_dir    = File.expand_path "../../", __FILE__
+shared_dir = File.expand_path "../../../shared/", __FILE__
 
 working_directory app_dir
 
