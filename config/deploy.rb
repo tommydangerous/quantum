@@ -49,7 +49,7 @@ task :deploy => :environment do
     # invoke :"rails:assets_precompile"
 
     to :launch do
-      invoke :"unicorn:start"
+      invoke :"unicorn:restart"
     end
   end
 end

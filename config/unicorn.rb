@@ -16,7 +16,8 @@ stdout_path "#{shared_dir}/log/unicorn.log"
 pid "#{shared_dir}/pids/unicorn.pid"
 
 before_exec do |server|
-  ENV["BUNDLE_GEMFILE"] = "#{app_dir}/Gemfile"
+  # ENV["BUNDLE_GEMFILE"] = "#{app_dir}/Gemfile"
+  ENV["BUNDLE_GEMFILE"] = "/var/www/quantum/current/Gemfile"
 end
 
 before_fork do |server, worker|
