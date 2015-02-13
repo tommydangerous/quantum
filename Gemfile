@@ -9,10 +9,12 @@ gem "dotenv-deployment"
 gem "dotenv-rails"
 gem "jquery-rails"
 gem "haml-rails", "~> 0.8"
-gem "mina"
-gem "mina-unicorn", require: false
 gem "pg"
 gem "sass-rails", "~> 4.0.3"
 gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
 gem "unicorn"
+
+group :development do
+  gem "mina"
+end

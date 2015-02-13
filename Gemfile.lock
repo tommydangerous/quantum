@@ -102,7 +102,6 @@ GEM
     mina (0.3.0)
       open4
       rake
-    mina-unicorn (0.0.4)
     mini_portile (0.6.0)
     minitest (5.5.1)
     multi_json (1.10.1)
@@ -183,7 +182,6 @@ DEPENDENCIES
   haml-rails (~> 0.8)
   jquery-rails
   mina
-  mina-unicorn
   pg
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)
