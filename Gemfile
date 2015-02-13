@@ -16,6 +16,6 @@ gem "uglifier", ">= 1.3.0"
 gem "unicorn"
 
 group :development do
-  gem "capistrano", "~> 3.3.0"
-  gem "capistrano-rails"
+  gem "mina"
+  gem "mina-unicorn", require: false
 end
