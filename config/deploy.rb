@@ -9,9 +9,9 @@ set :rails_env,  "production"
 
 set :domain,     "quantum"
 
-set :deploy_to,   "/var/www/quantum"
-set :app_path,    "#{deploy_to}/current"
-set :shared_path, "#{deploy_to}/shared"
+set :deploy_to,  "/var/www/quantum"
+set :app_dir,    "#{deploy_to}/current"
+set :shared_dir, "#{deploy_to}/shared"
 
 set :repository, "https://github.com/tommydangerous/quantum.git"
 set :branch,     "master"
@@ -20,7 +20,7 @@ set :user,       "ubuntu"
 # Manually create these paths in shared/ (eg: shared/config/database.yml)
 # in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ["config/database.yml", "config/secrets.yml", "log", ".env"]
+set :shared_paths, %w{.env log config/database.yml config/secrets.yml}
 set :keep_releases, 5
 
 set :ssh_options, "-A"
@@ -39,12 +39,12 @@ end
 # all releases.
 task :setup => :environment do
   %w{config log pids sockets}.each do |folder|
-    queue! %[mkdir -p "#{deploy_to}/shared/#{folder}"]
-    queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/#{folder}"]
+    queue! %[mkdir -p "#{shared_dir}/#{folder}"]
+    queue! %[chmod g+rx,u+rwx "#{shared_dir}/#{folder}"]
   end
 
   %w{.env config/database.yml config/secrets.yml}.each do |file|
-    queue! %[touch "#{deploy_to}/shared/#{file}"]
+    queue! %[touch "#{shared_dir}/#{file}"]
     queue  %[echo "-----> Be sure to edit 'shared/#{file}'."]
   end
 end
@@ -71,10 +71,10 @@ end
 #                                                                        Unicorn
 # ==============================================================================
 namespace :unicorn do
-  set :unicorn_pid, "#{shared_path}/pids/unicorn.pid"
+  set :unicorn_pid, "#{shared_dir}/pids/unicorn.pid"
   set :start_unicorn, %{
-    cd #{app_path}
-    bundle exec unicorn -c #{app_path}/config/unicorn.rb -E #{rails_env} -D
+    cd #{app_dir}
+    bundle exec unicorn -c #{app_dir}/config/unicorn.rb -E #{rails_env} -D
   }
 
 #                                                                     Start task
