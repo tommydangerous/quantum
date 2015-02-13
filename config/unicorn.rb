@@ -15,6 +15,10 @@ stdout_path "#{shared_dir}/log/unicorn.log"
 
 pid "#{shared_dir}/pids/unicorn.pid"
 
+before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = "#{app_dir}/Gemfile"
+end
+
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
   old_pid = "#{server.config[:pid]}.oldbin"
@@ -35,8 +39,4 @@ after_fork do |server, worker|
   # Unit forking works, we need to make sure we aren't using any of the parent's
   # sockets, e.g. db connection
   defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
-end
-
-before_exec do |server|
-  ENV['BUNDLE_GEMFILE'] = "#{app_dir}/Gemfile"
 end
